@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 
 public class Assignment3
 {
@@ -92,8 +94,87 @@ class Card
 
 class Hand
 {
+   public static final int MAX_CARDS = 100;
+   
+   private Card[] myCards = new Card[MAX_CARDS];
+   private int numCards;
+   
+   public Hand()
+   {
+      this.numCards = 0;
+   }
+   
+   
+   public void resetHand()
+   {
+      
+      Arrays.fill(myCards, null);
+      numCards = 0;
+      
+   }
+   
+   public boolean takeCard(Card card)
+   {
+    
+      if(numCards < MAX_CARDS)
+      {
+         Card addCard = new Card(card.getValue(), card.getSuit());
+         myCards[numCards] = addCard;
+         numCards++;
+         return true;
+      }
+      
+      return false;
+   }
+   
+   public Card playCard()
+   {
+      
+      Card card = myCards[numCards -1];
+      myCards[numCards -1] = null;
+      numCards--;
+      
+      return card;
+      
+   }
+   
+   
+   public String toString() 
+   {
+      
+      String handOfCards = "(";
+      
+      for(int i = 0; i < numCards; i++)
+      {
+         handOfCards += (i == numCards - 1) ? myCards[i].toString() : 
+            myCards[i].toString() + ", ";
+      }
+      
+      handOfCards += ")";
+      
+      return handOfCards;
+      
+   }
 
-
+   
+   public int getNumCards()
+   {
+      
+      return numCards;
+      
+   }
+   
+   
+   public Card inspectCard(int k)
+   {
+      
+      if(k >= 0 && k <= numCards)
+         return null;
+               
+      return myCards[k];
+      
+   }
+   
 }
 
 

@@ -6,16 +6,77 @@ public class Assignment3
 
    public static void main(String[] args)
    {
-    
-
+      
+      /* Hand tests to make sure it works */
+      /*----------------------------------*/
+      
+      Card card1 = new Card('3', Card.Suit.clubs);
+      Card card2 = new Card('T', Card.Suit.clubs);
+      Card card3 = new Card('9', Card.Suit.hearts);
+      Hand hand = new Hand();
+      int counter = 0;
+      
+      // add max number of cards to hand
+      for (int i = 0; i < Hand.MAX_CARDS; i++)
+      {
+         ++counter;
+         switch(counter)
+         {
+            case 2:
+               hand.takeCard(card2);
+               break;
+            case 3:
+               hand.takeCard(card3);
+               counter = 0;
+               break;
+            default:
+               hand.takeCard(card1);
+               break;
+               
+         }
+      }
+      
+      // print out the entire hand
+      System.out.println("Hand full");
+      System.out.println("After deal:");
+      System.out.println("Hand = " + hand.toString());
+      System.out.println("");
+      
+      //examine card and show it
+      System.out.println("Testing inspectCard():");
+      Card testCard = hand.inspectCard(2);
+      Card testCard2 = hand.inspectCard(101);
+      System.out.println(testCard.toString());
+      System.out.println(testCard2.toString());
+      System.out.println("");
+      
+      // play every card in hand
+      System.out.println("Play cards in Hand:");
+      for(int i = hand.getNumCards(); i > 0; i--)
+      {
+         Card playedCard = hand.playCard();
+         System.out.println(playedCard.toString());
+      }
+      
+      // print out empty hand
+      System.out.println("");
+      System.out.println("After playing all cards:");
+      System.out.println("Hand = " + hand.toString());
+      
+      /* end of hand test                 */
+      /*----------------------------------*/
+ 
    }
 
 }
 
 
+/*------------------------------------------------------
+ * Card Class
+ *---------------------------------------------------- */
 class Card
 {
-   public enum Suit {clubs, diamonds, hearts, spades};
+   public static enum Suit {clubs, diamonds, hearts, spades};
    private char value;
    private Suit suit;
    private boolean errorFlag;
@@ -92,19 +153,28 @@ class Card
 }
 
 
+/*------------------------------------------------------
+ * Hand Class
+ *---------------------------------------------------- */
 class Hand
 {
+   
+   // max number of cards allowed in hand
    public static final int MAX_CARDS = 100;
    
    private Card[] myCards = new Card[MAX_CARDS];
    private int numCards;
    
+   // default constructor
    public Hand()
    {
       this.numCards = 0;
-   }
+   }  
    
-   
+   /*
+    * resetHand takes no parameters and fills the array with null
+    * then sets the numCards back to 0
+    * */
    public void resetHand()
    {
       
@@ -113,6 +183,10 @@ class Hand
       
    }
    
+   /*
+    * takeCard takes a Card and adds it to hand
+    * returns true if successful. (makes new copy of card)
+    * */
    public boolean takeCard(Card card)
    {
     
@@ -127,10 +201,18 @@ class Hand
       return false;
    }
    
+   /*
+    * playCard plays card on top of the deck
+    * and returns that card to the caller
+    * */
    public Card playCard()
    {
       
-      Card card = myCards[numCards -1];
+      if(numCards == 0)
+         return null;
+      
+      Card card = new Card(myCards[numCards -1].getValue(),
+            myCards[numCards -1].getSuit());
       myCards[numCards -1] = null;
       numCards--;
       
@@ -138,7 +220,9 @@ class Hand
       
    }
    
-   
+   /*
+    * toString Displays the hand as a string
+    * */
    public String toString() 
    {
       
@@ -156,7 +240,9 @@ class Hand
       
    }
 
-   
+   /*
+    * getNumCards returns the number of cards in the hand
+    * */
    public int getNumCards()
    {
       
@@ -164,20 +250,28 @@ class Hand
       
    }
    
-   
+   /*
+    * inspectCard returns the card asked for,
+    * if the card is out of bounds it returns a card with
+    * errorFlag true
+    * */
    public Card inspectCard(int k)
    {
       
-      if(k >= 0 && k <= numCards)
-         return null;
-               
-      return myCards[k];
+      if(k >= 0 && k < numCards)
+         return myCards[k];
+      
+      // send a bad card so error flag is set
+      return new Card('e', Card.Suit.clubs);
       
    }
    
 }
 
 
+/*------------------------------------------------------
+ * Deck Class
+ *---------------------------------------------------- */
 class Deck
 {
 

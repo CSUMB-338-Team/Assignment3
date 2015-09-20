@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 
 public class Assignment3
@@ -272,8 +273,62 @@ class Hand
 /*------------------------------------------------------
  * Deck Class
  *---------------------------------------------------- */
-class Deck
+public class Deck
 {
+   private static Card masterPack[];//array contains reference for 52 cards which is 1 pack
+   private Card cards[];//array of card object
+   private int topCard;// index of next card to be dealt
+   private int numPacks;// number of packs
+   private final int NUMBER_OF_CARDS = 52;
+   private Random randomNumber;//random number generator;
+   
+   //constructor fills deck of cards
+   public Deck() // **********Public Deck (int numPacks)*************//
+   {
+      String values[] = { "A", "2", "3", "4", "5", "6", "7", "8", "9" , "T", "J", "Q", "K" } ;   
+      String suits[] = { "Hearts", " Diamonds" , "Clubs", "Speades" };  
+      
+      cards = new Card [ NUMBER_OF_CARDS ] ; // create array of Card object;
+      topCard = 0 ;
+      randomNumber = new Random(); // create random number generator
+      
+      //populate deck with card objects
+      for ( int i = 0; i < cards.length ; i++ )
+      {
+        cards[ i ] = new Card ( values[ i % 13 ] , suits[ i/13] );
+            
+      }//end for
+   }//end constructor Deck()
+   
+   //***************public void init(int numPacks)********************//
+   
+   //shuffle deck of cards 
+   public void shuffle()
+   {
+         //after shuffling , deal should start at deck[0] again
+        topCard = 0;
+         // for each card pick another random card 
+         for ( int first = 0 ; first < cards.length ; first++ )
+         {
+            int second = randomNumber.nextInt( NUMBER_OF_CARDS);
+            
+            Card temp = cards [ first ];
+            cards [first] = cards[ second ] ;
+            cards[ second ] = temp ; 
+         }// end for
+   }// end shuffle()
 
-
-}
+   public Card dealCard()
+   {
+      //determine whether cards are still to be dealt
+      if ( topCard < cards.length)
+          return cards[ topCard ++ ] ;
+      else 
+         return null; // return null to indicate that all cards were dealt;
+   }// end dealCard()
+   
+   //******************** public Card inspectCard( int k)******************//
+   
+   //private static void allocateMasterPack()********************************//
+   
+}//end class Deck()

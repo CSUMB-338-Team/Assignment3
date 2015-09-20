@@ -76,7 +76,7 @@ public class Assignment3
  *---------------------------------------------------- */
 class Card
 {
-   public static enum Suit {clubs, diamonds, hearts, spades};
+   public enum Suit {clubs, diamonds, hearts, spades};
    private char value;
    private Suit suit;
    private boolean errorFlag;

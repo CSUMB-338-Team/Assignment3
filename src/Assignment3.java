@@ -7,9 +7,35 @@ public class Assignment3
 
    public static void main(String[] args)
    {
+ 
+      /* Card tests to make sure it works */
+      /*----------------------------------*/
+      System.out.println("");
+      System.out.println("Card Class Tests:");
+      
+      Card cardClassCard1 = new Card('3', Card.Suit.clubs);
+      Card cardClassCard2 = new Card('T', Card.Suit.clubs);
+      Card cardClassCard3 = new Card('e', Card.Suit.hearts);
+      
+      System.out.println(cardClassCard1.toString());
+      System.out.println(cardClassCard2.toString());
+      System.out.println(cardClassCard3.toString());
+      
+      cardClassCard1.set('e', Card.Suit.clubs);
+      cardClassCard3.set('A', Card.Suit.clubs);
+      
+      System.out.println("");
+      System.out.println(cardClassCard1.toString());
+      System.out.println(cardClassCard2.toString());
+      System.out.println(cardClassCard3.toString());
+      
+      /* end Card tests
+      /*----------------------------------*/
       
       /* Hand tests to make sure it works */
       /*----------------------------------*/
+      System.out.println("");
+      System.out.println("Hand Class Tests:");
       
       Card card1 = new Card('3', Card.Suit.clubs);
       Card card2 = new Card('T', Card.Suit.clubs);
@@ -66,7 +92,58 @@ public class Assignment3
       
       /* end of hand test                 */
       /*----------------------------------*/
- 
+      
+      
+      /* Deck Tests to make sure it works
+      /*----------------------------------*/
+      
+      System.out.println("");
+      System.out.println("Deck Class Tests:");
+      
+      Deck deck = new Deck(2);
+      int cardCount = deck.getTopCard();
+      
+      System.out.println(cardCount + ":");
+      for(int i = 0; i < cardCount; i++)
+      {
+         Card card = deck.dealCard();
+         System.out.println(card.toString());
+      }
+      
+      deck.init(2);
+      deck.shuffle();
+      cardCount = deck.getTopCard();
+      System.out.println("");
+      System.out.println(cardCount + ":");
+      for(int i = 0; i < cardCount; i++)
+      {
+         Card card = deck.dealCard();
+         System.out.println(card.toString());
+      }
+      
+      deck.init(1);
+      cardCount = deck.getTopCard();
+      System.out.println("");
+      System.out.println(cardCount + ":");
+      for(int i = 0; i < cardCount; i++)
+      {
+         Card card = deck.dealCard();
+         System.out.println(card.toString());
+      }
+      
+      deck.init(1);
+      deck.shuffle();
+      cardCount = deck.getTopCard();
+      System.out.println("");
+      System.out.println(cardCount + ":");
+      for(int i = 0; i < cardCount; i++)
+      {
+         Card card = deck.dealCard();
+         System.out.println(card.toString());
+      }
+      /* end Deck Tests
+      /*----------------------------------*/
+      
    }
 
 }
@@ -77,7 +154,11 @@ public class Assignment3
  *---------------------------------------------------- */
 class Card
 {
+   // mappings for valid cards
    public enum Suit {clubs, diamonds, hearts, spades};
+   public static final char[] cardValue = {'A', '2', '3', '4', '5', '6', '7', 
+      '8', '9', 'T', 'J', 'Q', 'K'};
+   
    private char value;
    private Suit suit;
    private boolean errorFlag;
@@ -105,15 +186,11 @@ class Card
    //return true if card value is valid
    private boolean isValid(char value, Suit suit)
    {
-      char[] cardValue = {'1', '2', '3', '4', '5', '6', '7', '8', '9',
-                                  'T', 'A', 'J', 'K', 'Q'};
+
       for (int i = 0; i < cardValue.length; i++)
-      {
          if (value == cardValue[i])
-         {
             return true;
-         }
-      }
+      
       return false;
    }
    
@@ -143,6 +220,11 @@ class Card
    public Suit getSuit()
    {
       return suit;
+   }
+   
+   public boolean getErrorFlag()
+   {
+      return errorFlag;
    }
    
    public boolean equals(Card card)
@@ -273,62 +355,131 @@ class Hand
 /*------------------------------------------------------
  * Deck Class
  *---------------------------------------------------- */
-public class Deck
+class Deck
 {
-   private static Card masterPack[];//array contains reference for 52 cards which is 1 pack
+   
+   public static final int MAX_CARDS = 6*52;
+   
+   private static final int NUMBER_OF_CARDS = 52;
+   private static Card[] masterPack = new Card[NUMBER_OF_CARDS];
+   
    private Card cards[];//array of card object
    private int topCard;// index of next card to be dealt
    private int numPacks;// number of packs
-   private final int NUMBER_OF_CARDS = 52;
-   private Random randomNumber;//random number generator;
+  
+   //private Random randomNumber;//random number generator;
    
-   //constructor fills deck of cards
-   public Deck() // **********Public Deck (int numPacks)*************//
+   public Deck()
+   {            
+      this.numPacks = 1;
+      
+      // populate masterPack
+      allocateMasterPack();
+      
+      // create the deck
+      init(numPacks);
+   }
+   
+   public Deck(int numPacks)
+   {      
+      // check it isn't over MAX_CARD limit
+      if(NUMBER_OF_CARDS * numPacks > MAX_CARDS)
+         numPacks = 1;
+      
+      // populate masterPack
+      allocateMasterPack();
+      
+      // create the deck
+      init(numPacks);
+   }
+   
+   public void init(int numPacks) 
    {
-      String values[] = { "A", "2", "3", "4", "5", "6", "7", "8", "9" , "T", "J", "Q", "K" } ;   
-      String suits[] = { "Hearts", " Diamonds" , "Clubs", "Speades" };  
-      
-      cards = new Card [ NUMBER_OF_CARDS ] ; // create array of Card object;
-      topCard = 0 ;
-      randomNumber = new Random(); // create random number generator
-      
-      //populate deck with card objects
-      for ( int i = 0; i < cards.length ; i++ )
+      cards = new Card[NUMBER_OF_CARDS * numPacks];
+      this.topCard = 0;
+      this.numPacks = numPacks;
+      int count = 0;
+     
+      for(int i = 0; i < cards.length; i++)
+      { 
+         cards[i] = new Card(masterPack[count].getValue(), 
+               masterPack[count].getSuit());
+         topCard++;
+         count++;
+         
+         // count is 52 reset it back to 0 to start over
+         if(count == 52)
+            count = 0;     
+      }
+   }
+   
+   public void shuffle() 
+   {
+      for (int i = 0 ; i < cards.length; i++)
       {
-        cards[ i ] = new Card ( values[ i % 13 ] , suits[ i/13] );
-            
-      }//end for
-   }//end constructor Deck()
+         Card temp;
+         Random randomGenerator = new Random();
+         int randomCard = randomGenerator.nextInt(NUMBER_OF_CARDS * numPacks);
+         
+         temp = cards[i];
+         cards[i] = cards[randomCard];
+         cards[randomCard] = temp;
+      }
+   }
    
-   //***************public void init(int numPacks)********************//
-   
-   //shuffle deck of cards 
-   public void shuffle()
-   {
-         //after shuffling , deal should start at deck[0] again
-        topCard = 0;
-         // for each card pick another random card 
-         for ( int first = 0 ; first < cards.length ; first++ )
-         {
-            int second = randomNumber.nextInt( NUMBER_OF_CARDS);
-            
-            Card temp = cards [ first ];
-            cards [first] = cards[ second ] ;
-            cards[ second ] = temp ; 
-         }// end for
-   }// end shuffle()
-
    public Card dealCard()
    {
-      //determine whether cards are still to be dealt
-      if ( topCard < cards.length)
-          return cards[ topCard ++ ] ;
-      else 
-         return null; // return null to indicate that all cards were dealt;
-   }// end dealCard()
+      if(topCard == 0)
+         return null;
+      
+      Card card = new Card(cards[topCard -1].getValue(),
+            cards[topCard -1].getSuit());
+      cards[topCard -1] = null;
+      topCard--;
+      
+      return card;
+   }
    
-   //******************** public Card inspectCard( int k)******************//
+   public int getTopCard()
+   {
+      return topCard;
+   }
    
-   //private static void allocateMasterPack()********************************//
+   public Card inspectCard(int k)
+   {
+      
+      if(k < cards.length)
+         return cards[k];
+      
+      // send a bad card so error flag is set
+      return new Card('e', Card.Suit.clubs);
+      
+   }
+   
+   
+   /*private methods*/
+   private static void allocateMasterPack() 
+   {
+      // if last card in masterPack isn't null,
+      // it's already been initiated so return early
+      if(masterPack[NUMBER_OF_CARDS -1] != null)
+         return
+               ;
+      Card.Suit suit;
+      
+      for(int i = 0; i < masterPack.length; i++)
+      {  
+         if(i < 13)
+            suit = Card.Suit.spades;
+         else if(i >= 13 && i < 26)
+            suit = Card.Suit.clubs;
+         else if(i >= 26 && i < 39)
+            suit = Card.Suit.hearts;
+         else
+            suit = Card.Suit.diamonds;
+
+         masterPack[i] = new Card(Card.cardValue[ i % 13 ], suit);
+      }
+   }
    
 }//end class Deck()

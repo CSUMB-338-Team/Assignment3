@@ -463,8 +463,8 @@ class Deck
       // if last card in masterPack isn't null,
       // it's already been initiated so return early
       if(masterPack[NUMBER_OF_CARDS -1] != null)
-         return
-               ;
+         return;
+      
       Card.Suit suit;
       
       for(int i = 0; i < masterPack.length; i++)

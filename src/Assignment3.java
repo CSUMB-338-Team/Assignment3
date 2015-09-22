@@ -1,10 +1,8 @@
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 
 public class Assignment3
-{
-
+{  
    public static void main(String[] args)
    {
  
@@ -144,9 +142,64 @@ public class Assignment3
       /* end Deck Tests
       /*----------------------------------*/
       
+/**************************************************************************/      
+      /*begin main 
+      /*--------------------------------- */
+      Scanner keyboard = new Scanner(System.in);
+      int numPlayers = 0;
+      Deck oneDeck = new Deck(1);
+      Hand playerHand[];
+      int cardCounter = 0;
+      
+      do
+      {
+         System.out.println("Please Select number of hands.  (1-10)");
+         numPlayers = keyboard.nextInt();
+      }
+      while (numPlayers == 0 || numPlayers > 10);
+      
+      //initialize Hand array
+      playerHand = new Hand[numPlayers];
+      for (int i = 0; i < playerHand.length; i++)
+         playerHand[i] = new Hand();
+      
+      //deal unshuffled deck
+      while (cardCounter < 52)
+         for (int i = 0; i < playerHand.length; i++)
+         {            
+            if(cardCounter != 52)
+            {   
+               playerHand[i].takeCard(oneDeck.dealCard());
+               cardCounter++;
+            }
+         }
+      cardCounter = 0;   
+      
+      System.out.println("Here are the hands from an unshuffled deck:");
+      for (int i = 0; i < playerHand.length; i++)
+         System.out.println(playerHand[i].toString());
+      
+      //shuffle and reset hands
+      oneDeck.shuffle();
+      
+      for (int i = 0; i < playerHand.length; i++)
+         playerHand[i].resetHand();
+      
+      //deal shuffled deck and display
+      while (cardCounter < 52)
+         for (int i = 0; i < playerHand.length; i++)
+         {            
+            if(cardCounter != 52)
+            {   
+               playerHand[i].takeCard(oneDeck.dealCard());
+               cardCounter++;
+            }
+         }
+      
+      for (int i = 0; i < playerHand.length; i++)
+         System.out.println(playerHand[i].toString());      
    }
-
-}
+}//end class assignment3
 
 
 /*------------------------------------------------------
@@ -155,7 +208,7 @@ public class Assignment3
 class Card
 {
    // mappings for valid cards
-   public enum Suit {clubs, diamonds, hearts, spades};
+   public enum Suit{clubs, diamonds, hearts, spades};
    public static final char[] cardValue = {'A', '2', '3', '4', '5', '6', '7', 
       '8', '9', 'T', 'J', 'Q', 'K'};
    

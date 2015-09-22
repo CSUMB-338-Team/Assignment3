@@ -8,85 +8,85 @@ public class Assignment3
  
       /* Card tests to make sure it works */
       /*----------------------------------*/
-      System.out.println("");
-      System.out.println("Card Class Tests:");
-      
-      Card cardClassCard1 = new Card('3', Card.Suit.clubs);
-      Card cardClassCard2 = new Card('T', Card.Suit.clubs);
-      Card cardClassCard3 = new Card('e', Card.Suit.hearts);
-      
-      System.out.println(cardClassCard1.toString());
-      System.out.println(cardClassCard2.toString());
-      System.out.println(cardClassCard3.toString());
-      
-      cardClassCard1.set('e', Card.Suit.clubs);
-      cardClassCard3.set('A', Card.Suit.clubs);
-      
-      System.out.println("");
-      System.out.println(cardClassCard1.toString());
-      System.out.println(cardClassCard2.toString());
-      System.out.println(cardClassCard3.toString());
+//      System.out.println("");
+//      System.out.println("Card Class Tests:");
+//      
+//      Card cardClassCard1 = new Card('3', Card.Suit.clubs);
+//      Card cardClassCard2 = new Card('T', Card.Suit.clubs);
+//      Card cardClassCard3 = new Card('e', Card.Suit.hearts);
+//      
+//      System.out.println(cardClassCard1.toString());
+//      System.out.println(cardClassCard2.toString());
+//      System.out.println(cardClassCard3.toString());
+//      
+//      cardClassCard1.set('e', Card.Suit.clubs);
+//      cardClassCard3.set('A', Card.Suit.clubs);
+//      
+//      System.out.println("");
+//      System.out.println(cardClassCard1.toString());
+//      System.out.println(cardClassCard2.toString());
+//      System.out.println(cardClassCard3.toString());
       
       /* end Card tests
       /*----------------------------------*/
       
       /* Hand tests to make sure it works */
       /*----------------------------------*/
-      System.out.println("");
-      System.out.println("Hand Class Tests:");
-      
-      Card card1 = new Card('3', Card.Suit.clubs);
-      Card card2 = new Card('T', Card.Suit.clubs);
-      Card card3 = new Card('9', Card.Suit.hearts);
-      Hand hand = new Hand();
-      int counter = 0;
-      
-      // add max number of cards to hand
-      for (int i = 0; i < Hand.MAX_CARDS; i++)
-      {
-         ++counter;
-         switch(counter)
-         {
-            case 2:
-               hand.takeCard(card2);
-               break;
-            case 3:
-               hand.takeCard(card3);
-               counter = 0;
-               break;
-            default:
-               hand.takeCard(card1);
-               break;
-               
-         }
-      }
-      
-      // print out the entire hand
-      System.out.println("Hand full");
-      System.out.println("After deal:");
-      System.out.println("Hand = " + hand.toString());
-      System.out.println("");
-      
-      //examine card and show it
-      System.out.println("Testing inspectCard():");
-      Card testCard = hand.inspectCard(2);
-      Card testCard2 = hand.inspectCard(101);
-      System.out.println(testCard.toString());
-      System.out.println(testCard2.toString());
-      System.out.println("");
-      
-      // play every card in hand
-      System.out.println("Play cards in Hand:");
-      for(int i = hand.getNumCards(); i > 0; i--)
-      {
-         Card playedCard = hand.playCard();
-         System.out.println(playedCard.toString());
-      }
-      
-      // print out empty hand
-      System.out.println("");
-      System.out.println("After playing all cards:");
-      System.out.println("Hand = " + hand.toString());
+//      System.out.println("");
+//      System.out.println("Hand Class Tests:");
+//      
+//      Card card1 = new Card('3', Card.Suit.clubs);
+//      Card card2 = new Card('T', Card.Suit.clubs);
+//      Card card3 = new Card('9', Card.Suit.hearts);
+//      Hand hand = new Hand();
+//      int counter = 0;
+//      
+//      // add max number of cards to hand
+//      for (int i = 0; i < Hand.MAX_CARDS; i++)
+//      {
+//         ++counter;
+//         switch(counter)
+//         {
+//            case 2:
+//               hand.takeCard(card2);
+//               break;
+//            case 3:
+//               hand.takeCard(card3);
+//               counter = 0;
+//               break;
+//            default:
+//               hand.takeCard(card1);
+//               break;
+//               
+//         }
+//      }
+//      
+//      // print out the entire hand
+//      System.out.println("Hand full");
+//      System.out.println("After deal:");
+//      System.out.println("Hand = " + hand.toString());
+//      System.out.println("");
+//      
+//      //examine card and show it
+//      System.out.println("Testing inspectCard():");
+//      Card testCard = hand.inspectCard(2);
+//      Card testCard2 = hand.inspectCard(101);
+//      System.out.println(testCard.toString());
+//      System.out.println(testCard2.toString());
+//      System.out.println("");
+//      
+//      // play every card in hand
+//      System.out.println("Play cards in Hand:");
+//      for(int i = hand.getNumCards(); i > 0; i--)
+//      {
+//         Card playedCard = hand.playCard();
+//         System.out.println(playedCard.toString());
+//      }
+//      
+//      // print out empty hand
+//      System.out.println("");
+//      System.out.println("After playing all cards:");
+//      System.out.println("Hand = " + hand.toString());
       
       /* end of hand test                 */
       /*----------------------------------*/
@@ -95,109 +95,145 @@ public class Assignment3
       /* Deck Tests to make sure it works
       /*----------------------------------*/
       
-      System.out.println("");
-      System.out.println("Deck Class Tests:");
-      
-      Deck deck = new Deck(2);
-      int cardCount = deck.getTopCard();
-      
-      System.out.println(cardCount + ":");
-      for(int i = 0; i < cardCount; i++)
-      {
-         Card card = deck.dealCard();
-         System.out.println(card.toString());
-      }
-      
-      deck.init(2);
-      deck.shuffle();
-      cardCount = deck.getTopCard();
-      System.out.println("");
-      System.out.println(cardCount + ":");
-      for(int i = 0; i < cardCount; i++)
-      {
-         Card card = deck.dealCard();
-         System.out.println(card.toString());
-      }
-      
-      deck.init(1);
-      cardCount = deck.getTopCard();
-      System.out.println("");
-      System.out.println(cardCount + ":");
-      for(int i = 0; i < cardCount; i++)
-      {
-         Card card = deck.dealCard();
-         System.out.println(card.toString());
-      }
-      
-      deck.init(1);
-      deck.shuffle();
-      cardCount = deck.getTopCard();
-      System.out.println("");
-      System.out.println(cardCount + ":");
-      for(int i = 0; i < cardCount; i++)
-      {
-         Card card = deck.dealCard();
-         System.out.println(card.toString());
-      }
+//      System.out.println("");
+//      System.out.println("Deck Class Tests:");
+//      
+//      Deck deck = new Deck(2);
+//      int cardCount = deck.getTopCard();
+//      
+//      System.out.println(cardCount + ":");
+//      for(int i = 0; i < cardCount; i++)
+//      {
+//         Card card = deck.dealCard();
+//         System.out.println(card.toString());
+//      }
+//      
+//      deck.init(2);
+//      deck.shuffle();
+//      cardCount = deck.getTopCard();
+//      System.out.println("");
+//      System.out.println(cardCount + ":");
+//      for(int i = 0; i < cardCount; i++)
+//      {
+//         Card card = deck.dealCard();
+//         System.out.println(card.toString());
+//      }
+//      
+//      deck.init(1);
+//      cardCount = deck.getTopCard();
+//      System.out.println("");
+//      System.out.println(cardCount + ":");
+//      for(int i = 0; i < cardCount; i++)
+//      {
+//         Card card = deck.dealCard();
+//         System.out.println(card.toString());
+//      }
+//      
+//      deck.init(1);
+//      deck.shuffle();
+//      cardCount = deck.getTopCard();
+//      System.out.println("");
+//      System.out.println(cardCount + ":");
+//      for(int i = 0; i < cardCount; i++)
+//      {
+//         Card card = deck.dealCard();
+//         System.out.println(card.toString());
+//      }
       /* end Deck Tests
       /*----------------------------------*/
       
-/**************************************************************************/      
+
       /*begin main 
       /*--------------------------------- */
       Scanner keyboard = new Scanner(System.in);
-      int numPlayers = 0;
-      Deck oneDeck = new Deck(1);
-      Hand playerHand[];
-      int cardCounter = 0;
+      int numPlayers;
+      Deck singlePakcDeck;
+      Hand players[];
+      int cardCount;
       
+      // ask for number of players
       do
       {
+         
          System.out.println("Please Select number of hands.  (1-10)");
          numPlayers = keyboard.nextInt();
+         keyboard.nextLine();
+         
+      }while(numPlayers <= 0 || numPlayers > 10);
+      
+      // close the resource
+      keyboard.close();
+     
+      // init deck and players hands
+      singlePakcDeck = new Deck();
+      players = new Hand[numPlayers];
+      
+      // initiate all players hands
+      for (int i = 0; i < players.length; i++)
+         players[i] = new Hand();
+      
+      //deal cards to players
+      cardCount = singlePakcDeck.getTopCard();
+      for (int i = 0; i < cardCount; i++)
+      {
+         players[i % numPlayers].takeCard( singlePakcDeck.dealCard() );
       }
-      while (numPlayers == 0 || numPlayers > 10);
       
-      //initialize Hand array
-      playerHand = new Hand[numPlayers];
-      for (int i = 0; i < playerHand.length; i++)
-         playerHand[i] = new Hand();
       
-      //deal unshuffled deck
-      while (cardCounter < 52)
-         for (int i = 0; i < playerHand.length; i++)
-         {            
-            if(cardCounter != 52)
-            {   
-               playerHand[i].takeCard(oneDeck.dealCard());
-               cardCounter++;
-            }
+      // display all card in each players hand
+      for (int i = 0; i < numPlayers; i++)
+      {
+         int numOfCards = players[i].getNumCards();
+         
+         System.out.print("Player " + (i + 1) + "'s hand: (");
+         for(int k = 0; k < numOfCards; k++)
+         {
+            String hand = "";
+            hand += players[i].playCard().toString();
+            if(k < numOfCards - 1)
+               hand += ", ";
+            System.out.print(hand);
+
          }
-      cardCounter = 0;   
+         System.out.print(")\n\n");
+      }
+
       
-      System.out.println("Here are the hands from an unshuffled deck:");
-      for (int i = 0; i < playerHand.length; i++)
-         System.out.println(playerHand[i].toString());
+      System.out.print("\n\nHere are our hands, from SHUFFLED deck:\n");
       
-      //shuffle and reset hands
-      oneDeck.shuffle();
+      //reset the deck and shuffle the deck
+      singlePakcDeck.init(1);
+      singlePakcDeck.shuffle();
       
-      for (int i = 0; i < playerHand.length; i++)
-         playerHand[i].resetHand();
+      //reset the payer hands
+      for (int i = 0; i < players.length; i++)
+         players[i].resetHand();
       
-      //deal shuffled deck and display
-      while (cardCounter < 52)
-         for (int i = 0; i < playerHand.length; i++)
-         {            
-            if(cardCounter != 52)
-            {   
-               playerHand[i].takeCard(oneDeck.dealCard());
-               cardCounter++;
-            }
+      //deal cards to players
+      cardCount = singlePakcDeck.getTopCard();
+      for (int i = 0; i < cardCount; i++)
+      {
+         players[i % numPlayers].takeCard( singlePakcDeck.dealCard() );
+      }
+     
+      // display shuffled hands
+      for (int i = 0; i < numPlayers; i++)
+      {
+         int numOfCards = players[i].getNumCards();
+         
+         System.out.print("Player " + (i + 1) + "'s hand: (");
+         for(int k = 0; k < numOfCards; k++)
+         {
+            String hand = "";
+            hand += players[i].playCard().toString();
+            if(k < numOfCards - 1)
+               hand += ", ";
+            System.out.print(hand);
+
          }
+         System.out.print(")\n\n");
+      }
       
-      for (int i = 0; i < playerHand.length; i++)
-         System.out.println(playerHand[i].toString());      
    }
 }//end class assignment3
 
@@ -208,7 +244,7 @@ public class Assignment3
 class Card
 {
    // mappings for valid cards
-   public enum Suit{clubs, diamonds, hearts, spades};
+   public enum Suit{CLUBS, DIAMONDS, HEARTS, SPADES};
    public static final char[] cardValue = {'A', '2', '3', '4', '5', '6', '7', 
       '8', '9', 'T', 'J', 'Q', 'K'};
    
@@ -225,7 +261,7 @@ class Card
    //default constructor sets value to "A" and suit to spades
    public Card()
    {
-      set('A', Suit.spades);
+      set('A', Suit.SPADES);
    }
    
    //public method to return value and suit as a string
@@ -398,7 +434,7 @@ class Hand
          return myCards[k];
       
       // send a bad card so error flag is set
-      return new Card('e', Card.Suit.clubs);
+      return new Card('e', Card.Suit.CLUBS);
       
    }
    
@@ -505,7 +541,7 @@ class Deck
          return cards[k];
       
       // send a bad card so error flag is set
-      return new Card('e', Card.Suit.clubs);
+      return new Card('e', Card.Suit.CLUBS);
       
    }
    
@@ -523,13 +559,13 @@ class Deck
       for(int i = 0; i < masterPack.length; i++)
       {  
          if(i < 13)
-            suit = Card.Suit.spades;
+            suit = Card.Suit.SPADES;
          else if(i >= 13 && i < 26)
-            suit = Card.Suit.clubs;
+            suit = Card.Suit.CLUBS;
          else if(i >= 26 && i < 39)
-            suit = Card.Suit.hearts;
+            suit = Card.Suit.HEARTS;
          else
-            suit = Card.Suit.diamonds;
+            suit = Card.Suit.DIAMONDS;
 
          masterPack[i] = new Card(Card.cardValue[ i % 13 ], suit);
       }

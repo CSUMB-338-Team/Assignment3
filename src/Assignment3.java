@@ -1,4 +1,3 @@
-//Hi I am Rahel
 import java.util.*;
 
 
@@ -7,157 +6,150 @@ public class Assignment3
    public static void main(String[] args)
    {
  
-      /*----------------------------------------------------------------- 
-       * Phase 1: The Card Class
-       *-----------------------------------------------------------------*/
-      System.out.println("----------Card Class Tests----------\n");
+      /* Card tests to make sure it works */
+      /*----------------------------------*/
+//      System.out.println("");
+//      System.out.println("Card Class Tests:");
+//      
+//      Card cardClassCard1 = new Card('3', Card.Suit.clubs);
+//      Card cardClassCard2 = new Card('T', Card.Suit.clubs);
+//      Card cardClassCard3 = new Card('e', Card.Suit.hearts);
+//      
+//      System.out.println(cardClassCard1.toString());
+//      System.out.println(cardClassCard2.toString());
+//      System.out.println(cardClassCard3.toString());
+//      
+//      cardClassCard1.set('e', Card.Suit.clubs);
+//      cardClassCard3.set('A', Card.Suit.clubs);
+//      
+//      System.out.println("");
+//      System.out.println(cardClassCard1.toString());
+//      System.out.println(cardClassCard2.toString());
+//      System.out.println(cardClassCard3.toString());
       
-      Card cardClassCard1 = new Card('3', Card.Suit.CLUBS);
-      Card cardClassCard2 = new Card('T', Card.Suit.CLUBS);
-      Card cardClassCard3 = new Card('e', Card.Suit.HEARTS);
+      /* end Card tests
+      /*----------------------------------*/
       
-      System.out.println(cardClassCard1.toString());
-      System.out.println(cardClassCard2.toString());
-      System.out.println(cardClassCard3.toString());
+      /* Hand tests to make sure it works */
+      /*----------------------------------*/
+//      System.out.println("");
+//      System.out.println("Hand Class Tests:");
+//      
+//      Card card1 = new Card('3', Card.Suit.clubs);
+//      Card card2 = new Card('T', Card.Suit.clubs);
+//      Card card3 = new Card('9', Card.Suit.hearts);
+//      Hand hand = new Hand();
+//      int counter = 0;
+//      
+//      // add max number of cards to hand
+//      for (int i = 0; i < Hand.MAX_CARDS; i++)
+//      {
+//         ++counter;
+//         switch(counter)
+//         {
+//            case 2:
+//               hand.takeCard(card2);
+//               break;
+//            case 3:
+//               hand.takeCard(card3);
+//               counter = 0;
+//               break;
+//            default:
+//               hand.takeCard(card1);
+//               break;
+//               
+//         }
+//      }
+//      
+//      // print out the entire hand
+//      System.out.println("Hand full");
+//      System.out.println("After deal:");
+//      System.out.println("Hand = " + hand.toString());
+//      System.out.println("");
+//      
+//      //examine card and show it
+//      System.out.println("Testing inspectCard():");
+//      Card testCard = hand.inspectCard(2);
+//      Card testCard2 = hand.inspectCard(101);
+//      System.out.println(testCard.toString());
+//      System.out.println(testCard2.toString());
+//      System.out.println("");
+//      
+//      // play every card in hand
+//      System.out.println("Play cards in Hand:");
+//      for(int i = hand.getNumCards(); i > 0; i--)
+//      {
+//         Card playedCard = hand.playCard();
+//         System.out.println(playedCard.toString());
+//      }
+//      
+//      // print out empty hand
+//      System.out.println("");
+//      System.out.println("After playing all cards:");
+//      System.out.println("Hand = " + hand.toString());
       
-      cardClassCard1.set('e', Card.Suit.CLUBS);
-      cardClassCard3.set('A', Card.Suit.DIAMONDS);
-      
-      System.out.println("");
-      System.out.println(cardClassCard1.toString());
-      System.out.println(cardClassCard2.toString());
-      System.out.println(cardClassCard3.toString());
-      
-      /*----------------------------------------------------------------- 
-       * end of Phase 1
-       *-----------------------------------------------------------------*/
-      
-      
-      /*----------------------------------------------------------------- 
-       * Phase 2: The Hand Class
-       *-----------------------------------------------------------------*/
-      System.out.print("\n\n----------Hand Class Tests----------\n");
-      
-      Card card1 = new Card('3', Card.Suit.CLUBS);
-      Card card2 = new Card('T', Card.Suit.CLUBS);
-      Card card3 = new Card('9', Card.Suit.HEARTS);
-      Hand hand = new Hand();
-      int counter = 0;
-      
-      // add max number of cards to hand
-      for (int i = 0; i < Hand.MAX_CARDS; i++)
-      {
-         ++counter;
-         switch(counter)
-         {
-            case 2:
-               hand.takeCard(card2);
-               break;
-            case 3:
-               hand.takeCard(card3);
-               counter = 0;
-               break;
-            default:
-               hand.takeCard(card1);
-               break;
-               
-         }
-      }
-      
-      // print out the entire hand
-      System.out.println("Hand full");
-      System.out.println("After deal:");
-      System.out.println("Hand = " + hand.toString());
-      System.out.println("");
-      
-      //examine card and show it
-      System.out.println("Testing inspectCard():");
-      Card testCard = hand.inspectCard(2);
-      Card testCard2 = hand.inspectCard(101);
-      System.out.println(testCard.toString());
-      System.out.println(testCard2.toString());
-      System.out.println("");
-      
-      // play every card in hand
-      System.out.println("Play cards in Hand:");
-      for(int i = hand.getNumCards(); i > 0; i--)
-      {
-         Card playedCard = hand.playCard();
-         System.out.println(playedCard.toString());
-      }
-      
-      // print out empty hand
-      System.out.println("");
-      System.out.println("After playing all cards:");
-      System.out.println("Hand = " + hand.toString());
-      
-      /*----------------------------------------------------------------- 
-       * end of Phase 2
-       *-----------------------------------------------------------------*/
+      /* end of hand test                 */
+      /*----------------------------------*/
       
       
-      /*----------------------------------------------------------------- 
-       * Phase 3: The Deck Class
-       *-----------------------------------------------------------------*/
+      /* Deck Tests to make sure it works
+      /*----------------------------------*/
       
-      System.out.print("\n\n----------Deck Class Tests----------\n");
-      
-      Deck deck = new Deck(2);
-      int testCardCount = deck.getTopCard();
-      
-      System.out.println(testCardCount + " Not Shuffled:");
-      for(int i = 0; i < testCardCount; i++)
-      {
-         Card card = deck.dealCard();
-         System.out.println(card.toString());
-      }
-      
-      deck.init(2);
-      deck.shuffle();
-      testCardCount = deck.getTopCard();
-      System.out.println("");
-      System.out.println(testCardCount + " Shuffled:");
-      for(int i = 0; i < testCardCount; i++)
-      {
-         Card card = deck.dealCard();
-         System.out.println(card.toString());
-      }
-      
-      deck.init(1);
-      testCardCount = deck.getTopCard();
-      System.out.println("");
-      System.out.println(testCardCount + " Not Shuffled:");
-      for(int i = 0; i < testCardCount; i++)
-      {
-         Card card = deck.dealCard();
-         System.out.println(card.toString());
-      }
-      
-      deck.init(1);
-      deck.shuffle();
-      testCardCount = deck.getTopCard();
-      System.out.println("");
-      System.out.println(testCardCount + " Shuffled:");
-      for(int i = 0; i < testCardCount; i++)
-      {
-         Card card = deck.dealCard();
-         System.out.println(card.toString());
-      }
-      /*----------------------------------------------------------------- 
-       * end of Phase 3
-       *-----------------------------------------------------------------*/
+//      System.out.println("");
+//      System.out.println("Deck Class Tests:");
+//      
+//      Deck deck = new Deck(2);
+//      int cardCount = deck.getTopCard();
+//      
+//      System.out.println(cardCount + ":");
+//      for(int i = 0; i < cardCount; i++)
+//      {
+//         Card card = deck.dealCard();
+//         System.out.println(card.toString());
+//      }
+//      
+//      deck.init(2);
+//      deck.shuffle();
+//      cardCount = deck.getTopCard();
+//      System.out.println("");
+//      System.out.println(cardCount + ":");
+//      for(int i = 0; i < cardCount; i++)
+//      {
+//         Card card = deck.dealCard();
+//         System.out.println(card.toString());
+//      }
+//      
+//      deck.init(1);
+//      cardCount = deck.getTopCard();
+//      System.out.println("");
+//      System.out.println(cardCount + ":");
+//      for(int i = 0; i < cardCount; i++)
+//      {
+//         Card card = deck.dealCard();
+//         System.out.println(card.toString());
+//      }
+//      
+//      deck.init(1);
+//      deck.shuffle();
+//      cardCount = deck.getTopCard();
+//      System.out.println("");
+//      System.out.println(cardCount + ":");
+//      for(int i = 0; i < cardCount; i++)
+//      {
+//         Card card = deck.dealCard();
+//         System.out.println(card.toString());
+//      }
+      /* end Deck Tests
+      /*----------------------------------*/
       
 
-      /*----------------------------------------------------------------- 
-       * Phase 4: The Deck and Hand Classes
-       *-----------------------------------------------------------------*/
-      
-      System.out.print("\n\n----------Phase 4 Integration----------\n");
-      
+      /*begin main 
+      /*--------------------------------- */
       Scanner keyboard = new Scanner(System.in);
-      int numPlayers, cardCount;
+      int numPlayers;
       Deck singlePakcDeck;
       Hand players[];
+      int cardCount;
       
       // ask for number of players
       do
@@ -172,8 +164,8 @@ public class Assignment3
       // close the resource
       keyboard.close();
      
-      // init deck and number of hands
-      singlePakcDeck = new Deck(1);
+      // init deck and players hands
+      singlePackDeck = new Deck();
       players = new Hand[numPlayers];
       
       // initiate all players hands
@@ -181,52 +173,66 @@ public class Assignment3
          players[i] = new Hand();
       
       //deal cards to players
-      cardCount = singlePakcDeck.getTopCard();
+      cardCount = singlePackDeck.getTopCard();
       for (int i = 0; i < cardCount; i++)
       {
-         Card card = singlePakcDeck.dealCard();
-         if(!card.getErrorFlag())
-            players[i % numPlayers].takeCard( card );
+         players[i % numPlayers].takeCard( singlePackDeck.dealCard() );
       }
       
       
       // display all card in each players hand
       for (int i = 0; i < numPlayers; i++)
       {
-         System.out.print("Player " + (i + 1) + "'s hand: ");
-         System.out.print(players[i].toString() + "\n\n");
+         int numOfCards = players[i].getNumCards();
+         
+         System.out.print("Player " + (i + 1) + "'s hand: (");
+         for(int k = 0; k < numOfCards; k++)
+         {
+            String hand = "";
+            hand += players[i].playCard().toString();
+            if(k < numOfCards - 1)
+               hand += ", ";
+            System.out.print(hand);
+
+         }
+         System.out.print(")\n\n");
       }
 
       
       System.out.print("\n\nHere are our hands, from SHUFFLED deck:\n");
       
       //reset the deck and shuffle the deck
-      singlePakcDeck.init(1);
-      singlePakcDeck.shuffle();
+      singlePackDeck.init(1);
+      singlePackDeck.shuffle();
       
       //reset the payer hands
       for (int i = 0; i < players.length; i++)
          players[i].resetHand();
       
       //deal cards to players
-      cardCount = singlePakcDeck.getTopCard();
+      cardCount = singlePackDeck.getTopCard();
       for (int i = 0; i < cardCount; i++)
       {
-         Card card = singlePakcDeck.dealCard();
-         if(!card.getErrorFlag())
-            players[i % numPlayers].takeCard( card );
+         players[i % numPlayers].takeCard( singlePackDeck.dealCard() );
       }
      
       // display shuffled hands
       for (int i = 0; i < numPlayers; i++)
       {
-         System.out.print("Player " + (i + 1) + "'s hand: ");
-         System.out.print(players[i].toString() + "\n\n");
+         int numOfCards = players[i].getNumCards();
+         
+         System.out.print("Player " + (i + 1) + "'s hand: (");
+         for(int k = 0; k < numOfCards; k++)
+         {
+            String hand = "";
+            hand += players[i].playCard().toString();
+            if(k < numOfCards - 1)
+               hand += ", ";
+            System.out.print(hand);
+
+         }
+         System.out.print(")\n\n");
       }
-      
-      /*----------------------------------------------------------------- 
-       * end of Phase 4
-       *-----------------------------------------------------------------*/
       
    }
 }//end class assignment3
@@ -246,7 +252,7 @@ class Card
    private Suit suit;
    private boolean errorFlag;
    
-   //constructor with parameters takes a card value and suit
+   /*constructor with parameters takes a value and Suit*/
    public Card(char value, Suit suit)
    {
       set(value, suit);
@@ -255,7 +261,7 @@ class Card
    //default constructor sets value to "A" and suit to spades
    public Card()
    {
-      set('A', Suit.SPADES);
+      set('A', Suit.spades);
    }
    
    //public method to return value and suit as a string
@@ -266,7 +272,9 @@ class Card
       return String.valueOf(value) + " of " + suit;
    }
    
-   //return true if card value is valid
+   /* isValid takes a char value and Suit and
+    * returns true if card value is valid
+    */
    private boolean isValid(char value, Suit suit)
    {
 
@@ -277,7 +285,10 @@ class Card
       return false;
    }
    
-   //setter function 
+   /*
+    * set takes a value and Suit, assigns them to a Card and
+    * returns true if successful 
+    */
    public boolean set(char value, Suit suit)
    {
       if (isValid(value, suit))
@@ -294,22 +305,27 @@ class Card
       }
    }
    
-   //accessor functions
+   //getValue returns a Card's value
    public char getValue()
    {
       return value;
    }
    
+   //getSuit returns a Card's suit
    public Suit getSuit()
    {
       return suit;
    }
    
+   //getErrorFlag returns errorFlag
    public boolean getErrorFlag()
    {
       return errorFlag;
    }
    
+   /*equals takes a Card and returns true if it matches the current 
+    *value and Suit
+    */
    public boolean equals(Card card)
    {
       if (card == this)
@@ -317,7 +333,6 @@ class Card
       return false;
    }
 }
-
 
 /*------------------------------------------------------
  * Hand Class

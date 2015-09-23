@@ -1,5 +1,15 @@
 import java.util.*;
 
+/*
+*
+* Matthew Bozelka
+* Assignment 3 - Write a Java program: Decks of Cards
+* 
+* Purpose: The purpose of this assignment is to create a Hand, Card, and 
+* Deck class that will interact with each other to create a program that
+* is a card game.
+*
+* */
 
 public class Assignment3
 {  
@@ -463,6 +473,7 @@ class Hand
 class Deck
 {
    
+   //setting maximum number of packs to six
    public static final int MAX_CARDS = 6*52;
    
    private static final int NUMBER_OF_CARDS = 52;
@@ -471,9 +482,8 @@ class Deck
    private Card cards[];//array of card object
    private int topCard;// index of next card to be dealt
    private int numPacks;// number of packs
-  
-   //private Random randomNumber;//random number generator;
-   
+     
+   //constructor initialize number of packs
    public Deck()
    {            
       this.numPacks = 1;
@@ -485,6 +495,10 @@ class Deck
       init(numPacks);
    }
    
+   /*
+    * constructor populates array masterPack and 
+    * assign initial values
+    */
    public Deck(int numPacks)
    {      
       // check it isn't over MAX_CARD limit
@@ -498,6 +512,10 @@ class Deck
       init(numPacks);
    }
    
+   /* 
+    * method init re-populates array cards with 
+    * new number of cards using new number of packs 
+    */
    public void init(int numPacks) 
    {
       cards = new Card[NUMBER_OF_CARDS * numPacks];
@@ -518,6 +536,7 @@ class Deck
       }
    }
    
+   //method shuffle() mixes up cards in a deck of cards
    public void shuffle() 
    {
       for (int i = 0 ; i < cards.length; i++)
@@ -532,6 +551,10 @@ class Deck
       }
    }
    
+   /*
+    * method dealCard() deals number of cards
+    * by checking the availability of cards 
+    */
    public Card dealCard()
    {
       if(topCard == 0)
@@ -545,11 +568,19 @@ class Deck
       return card;
    }
    
+   /* 
+    * accessor to get index of top card 
+    * in cards array
+    */
    public int getTopCard()
    {
       return topCard;
    }
    
+   /* 
+    * Inspects a card at k index
+    * returns the card or a bad card if k is not a good index
+    */
    public Card inspectCard(int k)
    {
       
@@ -562,7 +593,10 @@ class Deck
    }
    
    
-   /*private methods*/
+   /* 
+    * private method to allocate the master deck
+    * master deck is used on all deck instances
+    */
    private static void allocateMasterPack() 
    {
       // if last card in masterPack isn't null,

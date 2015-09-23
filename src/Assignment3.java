@@ -1,6 +1,6 @@
 import java.util.*;
 
-// test
+
 public class Assignment3
 {  
    public static void main(String[] args)
@@ -152,7 +152,6 @@ public class Assignment3
        *-----------------------------------------------------------------*/
       
       System.out.print("\n\n----------Phase 4 Integration----------\n");
-      
       Scanner keyboard = new Scanner(System.in);
       int numPlayers, cardCount;
       Deck singlePakcDeck;
@@ -245,19 +244,25 @@ class Card
    private Suit suit;
    private boolean errorFlag;
    
-   //constructor with parameters takes a card value and suit
+   /*
+    * constructor with parameters takes a value and Suit
+    * */
    public Card(char value, Suit suit)
    {
       set(value, suit);
    }
    
-   //default constructor sets value to "A" and suit to spades
+   /*
+    * default constructor sets value to "A" and suit to spades
+    * */
    public Card()
    {
       set('A', Suit.SPADES);
    }
    
-   //public method to return value and suit as a string
+   /*
+    * public method to return value and suit as a string
+    * */
    public String toString()
    {
       if (errorFlag == true)
@@ -265,7 +270,10 @@ class Card
       return String.valueOf(value) + " of " + suit;
    }
    
-   //return true if card value is valid
+   /* 
+    * isValid takes a char value and Suit and
+    * returns true if card value is valid
+    */
    private boolean isValid(char value, Suit suit)
    {
 
@@ -276,7 +284,10 @@ class Card
       return false;
    }
    
-   //setter function 
+   /*
+    * set takes a value and Suit, assigns them to a Card and
+    * returns true if successful 
+    */
    public boolean set(char value, Suit suit)
    {
       if (isValid(value, suit))
@@ -293,22 +304,34 @@ class Card
       }
    }
    
-   //accessor functions
+   /*
+    * getValue returns a Card's value
+    * */
    public char getValue()
    {
       return value;
    }
    
+   /*
+    * getSuit returns a Card's suit
+    * */
    public Suit getSuit()
    {
       return suit;
    }
    
+   /*
+    * getErrorFlag returns errorFlag
+    * */
    public boolean getErrorFlag()
    {
       return errorFlag;
    }
    
+   /*
+    *equals takes a Card and returns true if it matches the current 
+    *value and Suit
+    */
    public boolean equals(Card card)
    {
       if (card == this)
